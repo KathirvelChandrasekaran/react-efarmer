@@ -1,0 +1,15 @@
+
+.nav-link {
+  margin: 0 20px;
+  width: 100px;
+  background-color: whitesmoke;
+  border-radius: 50px;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  display: flex;
+}
+
+.container {
+  margin: 50px 0;
+}

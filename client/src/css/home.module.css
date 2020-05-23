@@ -1,0 +1,21 @@
+/* .pane {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+div .leftPane {
+    width: 50%;
+    left: 0;
+    display: flex;
+    margin: 10px;
+    position: absolute;
+}
+
+
+div .rightPane {
+    right: 0;
+    position: absolute;
+    width: 50%;
+    margin: 10px;
+    display: flex;
+} */
