@@ -1,99 +1,43 @@
 import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
+import { Container } from "reactstrap";
+
+import PrivateRoute from "./components/PrivateRoute";
+import Loading from "./components/Loading";
+import NavBar from "./components/NavBar";
+// import Footer from "./components/Footer";
+import Home from "./views/Home";
+import Profile from "./views/Profile";
+import { useAuth0 } from "./react-auth0-spa";
+import history from "./utils/history";
+
+// styles
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
-import Home from "./auth/components/home";
-import Register from "./auth/components/register";
-import Login from "./auth/components/login";
-import ProtectedRouter from "./auth/components/protected";
-import SearchPlants from "./auth/components/searchPlants";
-import ViewPlants from "./auth/components/viewPlants";
-import SearchRecipe from "./auth/components/searchRecipe";
-import { PlantProvider } from "./auth/context/plantContext";
-import LockOpenIcon from '@material-ui/icons/LockOpen';
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import HomeIcon from '@material-ui/icons/Home';
+// fontawesome
+import initFontAwesome from "./utils/initFontAwesome";
+initFontAwesome();
 
+const App = () => {
+  const { loading } = useAuth0();
 
-function App() {
-  const hasToken = JSON.parse(localStorage.getItem("auth-token"));
-  console.log(hasToken);
-  
-  const NavLinks = (props) => {
-    return hasToken ? (
-      <div>
-        <li className="nav-item">
-          <Link className="nav-link text-success" to="home">
-            <HomeIcon/>Home
-          </Link>
-        </li>
-      </div>
-    ) : (
-      <div className="row">
-        <li className="nav-item">
-          <Link className="nav-link text-success" to="login">
-            <LockOpenIcon/>Login
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link text-success" to="register">
-            <VpnKeyIcon/>Register
-          </Link>
-        </li>
-      </div>
-    );
-  };
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
-    <div className="App">
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark  ">
-        <Link className="navbar-brand" to="/">
-          eFarmer
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div
-          className="collapse navbar-collapse justify-content-end"
-          id="navbarNavDropdown"
-        >
-          <ul className="navbar-nav">
-            <NavLinks />
-          </ul>
-        </div>
-      </nav>
-      <Switch>
-        <PlantProvider>
-          <Route exact path="/register" component={Register}></Route>
-          <Route exact path="/login" component={Login}></Route>
-          <ProtectedRouter path="/home" component={Home}></ProtectedRouter>
-          <ProtectedRouter
-            path="/searchPlant"
-            component={SearchPlants}
-          ></ProtectedRouter>
-          <ProtectedRouter
-            path="/viewPlant"
-            component={ViewPlants}
-          ></ProtectedRouter>
-          <ProtectedRouter
-            path="/searchRecipe"
-            component={SearchRecipe}
-          ></ProtectedRouter>
-        </PlantProvider>
-      </Switch>
-      <ToastContainer></ToastContainer>
-    </div>
+    <Router history={history}>
+      <div id="app" className="d-flex flex-column h-100">
+        <NavBar />
+        <Container className="flex-grow-1 mt-5">
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <PrivateRoute path="/profile" component={Profile} />
+          </Switch>
+        </Container>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;

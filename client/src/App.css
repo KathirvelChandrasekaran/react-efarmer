@@ -1,15 +1,31 @@
-
-.nav-link {
-  margin: 0 20px;
-  width: 100px;
-  background-color: whitesmoke;
-  border-radius: 50px;
-  text-align: center;
-  align-items: center;
-  align-content: center;
-  display: flex;
+.next-steps .fa-link {
+  margin-right: 5px;
 }
 
-.container {
-  margin: 50px 0;
+/* Fix for use only flexbox in content area */
+.next-steps .row {
+  margin-bottom: 0;
+}
+
+.next-steps .col-md-5 {
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+  .next-steps .col-md-5 {
+    margin-bottom: 0;
+  }
+}
+
+.spinner {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

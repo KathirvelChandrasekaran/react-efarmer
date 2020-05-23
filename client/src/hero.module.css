@@ -1,0 +1,36 @@
+main section.module.parallax {
+  height: 610px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+main section.module.parallax-3 {
+  background-image: url("https://images.pexels.com/photos/5836/yellow-metal-design-decoration.jpg");
+}
+
+main section.module.parallax-2 {
+  background-image: url("https://images.pexels.com/photos/276514/pexels-photo-276514.jpeg");
+}
+
+main section.module.parallax-1 {
+  background-image: url("https://images.pexels.com/photos/1040499/pexels-photo-1040499.jpeg");
+}
+
+.container > .text {
+  text-align: center;
+  padding: 200px;
+  margin: 0px;
+  font-weight: bold;
+  font-size: 50px;
+  background: -webkit-gradient(linear, left bottom, right top, from(#370533), color-stop(#87133c), color-stop(#c24c25), color-stop(#d29a00), to(#a8eb12));
+  background: linear-gradient(to right top, #370533, #87133c, #c24c25, #d29a00, #a8eb12);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.container > .text p {
+  font-size: 20px;
+}
+/*# sourceMappingURL=hero.module.css.map */
